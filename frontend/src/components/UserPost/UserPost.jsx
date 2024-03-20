@@ -1,9 +1,15 @@
 import { VStack,Box,Flex,Text,Avatar,Image } from '@chakra-ui/react'
 import { BsThreeDots } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import { PostAction } from '../PostAction/PostAction'
+import PostAction from '../PostAction/PostAction'
+import { useState } from 'react'
 
-const UserPost = () => {
+
+const UserPost = (props) => {
+
+
+  const [liked,setLiked] = useState(false)
+  
   return (
     <Link to={"/udayan/post/1"}>
       <Flex gap={3} mb={4} py={5}>
@@ -54,16 +60,21 @@ const UserPost = () => {
             </Flex>
           </Flex>
 
-          <Text>
-            Post title is my first post
+          <Text fontSize={"sm"}>
+            {props.postTitle}
           </Text>
 
           <Box borderRadius={6} overflow={"hidden"} border={"1px solid "} borderColor={"gray.light"} >
-            <Image src='/post1.png' w={"full"} />
+            <Image src={props.postImg} w={"full"} />
           </Box>
 
           <Flex>
-            <PostAction/>
+            <PostAction liked={liked} setLiked={setLiked}/>
+          </Flex>
+          <Flex gap={2} alignItems={"center"}>
+            <Text color={"gray.light"} fontSize={"sm"}>{props.replies} replies</Text>
+            <Box w={.5} h={0.5} borderRadius={"full"} bg={"gray.light"} ></Box>
+            <Text color={"gray.light"} fontSize={"sm"}>{props.likes} likes</Text>
           </Flex>
         </Flex>
       </Flex>

@@ -5,6 +5,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  useColorModeValue
 } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import { BsInstagram } from "react-icons/bs"
@@ -39,7 +40,7 @@ const UserHeader = () => {
           </Text>
           <Flex gap={2} alignItems={"center"}>
             <Text fontSize={"sm"}>arockiaudayan</Text>
-            <Text fontSize={"xs"} bg={"gray.dark"} color={"gray.light"} p={1} borderRadius={"full"}>
+            <Text fontSize={{base:"xs",md:"sm",lg:"ms"}} bg={"gray.dark"} color={"gray.light"} p={1} borderRadius={"full"}>
               thread.next
             </Text>
           </Flex>
@@ -48,7 +49,7 @@ const UserHeader = () => {
           <Avatar
           name='Arockia Udayan'
           src='/zuck-avatar.png'
-          size={"xl"}
+          size={{ base:"md",md:"xl" }}
           />
         </Box>
       </Flex>
@@ -62,16 +63,16 @@ const UserHeader = () => {
           <Text color={"gray.light"}>instatgram.com</Text>
         </Flex>
         <Flex>
-          <Box className="icon-container">
+          <Box className={useColorModeValue('icon-container-light','icon-container-dark')}>
             <BsInstagram size={24} cursor={"pointer"}  />
           </Box>
-          <Box className="icon-container">
+          <Box className={useColorModeValue('icon-container-light','icon-container-dark')}>
           <Menu>
             <MenuButton >
               <CgMoreO size={24} cursor={"pointer"}  />
             </MenuButton>
-            <MenuList bg={"gray.dark"}>
-              <MenuItem bg={"gray.dark"} onClick={copyURL} >Copy link</MenuItem>
+            <MenuList  bg={useColorModeValue('gray.300', 'gray.dark')}>
+              <MenuItem bg={useColorModeValue('gray.300', 'gray.dark')} onClick={copyURL} >Copy link</MenuItem>
             </MenuList>
           </Menu>
           </Box>
